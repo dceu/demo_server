@@ -47,4 +47,4 @@ npm install
 will create a node_modules dir and install demo project dependencies
 
 ### ToDo:
--[ ] create npm run script
+- [ ] create npm run script
