@@ -13,4 +13,10 @@ app.get("/", (req, res) => {
   res.send(`${html}`);
 });
 
+// Include paths for submodules/projects below
+app.get("/recipething", (req, res) => {
+  console.log("Retrieving recipething");
+  html = fs.readFileSync("./recipething/index.html");
+});
+
 app.listen(port, () => console.log(`DEMO SERVER listening on port ${port}!`));
