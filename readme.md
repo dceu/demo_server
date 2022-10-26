@@ -1,50 +1,60 @@
 # A Simple Express Server to Demo HTML/CSS/Javascript
+Simple server implemented as a portfolio application. 
+## Requirements: 
+- [x] [Node](https://nodejs.org/en/download/)
+- [x] [Express](https://expressjs.com/)
+- [ ] Your own git Submodules
 
-## Install Node
-https://nodejs.org/en/download/
-
-## Install Express
-```
-npm install express
-```
-
-make sure you have admin privies or if using a linux distro:
-
-```
-sudo npm install express
+# How to use
+## Add a Submodule 
+```shell
+cd public/ && git submodule add {your submodule url}
 ```
 
-## Start Server
+## Update Links & Routes
+**Links** in *index.html*
+```html
+<div class="projects">
+      <a href="/yourProject">go to project thing</a>
+    </div>
 ```
-node server.js
-```
-
-### How to use
-#### in server.js
-```
-app.get("/", (req, res) => {
+**Routes** in *server.js*
+```js
+app.get("/{projectName}", (req, res) => {
   console.log("server get request");
-  html = fs.readFileSync("./index.html");
+  html = fs.readFileSync("./public/{projectName}/index.html");
   res.send(`${html}`);
 ```
-Routes to the index.html file
+## Demo
+in your *terminal* the command:
+```shell
+node server.js
+```
+Will start a server listening on **port 3001** by default! This can be changed in *server.js*
+```js
+const port = 3001; // change to your spec
+```
+# Customize
+Add your own stylesheets and scripts to **public/** and link them in the *index.html*
 
-```
-app.use(express.static("public"));
-```
-Allows static access to the public dir (include local css/js files here), but make sure you link them in the index.html head:
-```
+
+```html
 <head>
- <script defer src="/recipething/recipething.js"></script>
+  ...
+  <link rel="stylesheet" href="customStyles.css" />
+ <script defer src="/customThing.js"></script>
+ ...
  </head>
  ```
-
-
-### If You want to see some of the javascript included in this demo:
+You can change/add your own static folders to be served in *server.js*
+### For example, adding the following line to *server.js*
+```js
+app.use(express.static("projects"));
 ```
-npm install
-```
-will create a node_modules dir and install demo project dependencies
+Will open up routes to a folder named projects in the **root** directory.
 
-### ToDo:
+# To Do:
 - [ ] create npm run script
+- [ ] projects folder to house submodules
+- [ ] update package.json to decouple projects from server package
+- [ ] deployment strategy that deploys as a single application containing projects
