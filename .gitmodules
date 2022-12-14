@@ -2,3 +2,6 @@
 	path = public/recipething
 	url = https://github.com/dceu/recipething
 
+[submodule "public/foodholidaything"]
+	path = public/foodholidaything
+	url = https://github.com/dceu/foodholidaything.git
